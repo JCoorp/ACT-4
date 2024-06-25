@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Usuarios</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="/css/estilosTabla.css">
+</head>
+<body>
+    <%- include('templates/encabezado') %> <!-- Actualiza la ruta aquí -->
+    <h1>Lista de Usuarios</h1>
+    <% if (usuariosBD && usuariosBD.length > 0) { %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% usuariosBD.forEach(usuario => { %>
+                    <tr>
+                        <td><%= usuario.idUsuario %></td>
+                        <td><%= usuario.nombre %></td>
+                        <td><%= usuario.celular %></td>
+                        <td><%= usuario.correo %></td>
+                        <td>
+                            <a href="/borrarUsuario/<%= usuario.idusuario %>">Borrar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No hay usuarios.</p>
+    <% } %>
+    <%- include('templates/pie') %> <!-- Actualiza la ruta aquí -->
+</body>
+</html>
